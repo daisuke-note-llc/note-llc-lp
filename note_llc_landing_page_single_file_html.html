@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NOTE LLC｜イベントとレコードで、“いま”を届ける制作チーム</title>
+  <meta name="description" content="NOTE LLC｜イベント制作／アーティスト招聘／原盤制作／DriveShare／会社情報／お問い合わせ" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0c10;--panel:#121418;--text:#e6e9ef;--muted:#9aa3af;--brand:#7dd3fc;--brand2:#a78bfa;--accent:#22d3ee;--border:#1f2430;
+      --shadow:0 10px 25px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;}
+    body{font-family:Inter, "Noto Sans JP", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; background:linear-gradient(180deg,var(--bg),#0f1117); color:var(--text);}
+    a{color:var(--text);text-decoration:none}
+    .container{width:min(1120px,92%);margin-inline:auto}
+    header{position:sticky;top:0;z-index:50;background:rgba(11,12,16,.7);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.02em}
+    .brand .logo{width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,var(--brand),var(--brand2));box-shadow:var(--shadow)}
+    .nav ul{display:flex;gap:18px;list-style:none;padding:0;margin:0;align-items:center}
+    .btn{display:inline-block;border:1px solid var(--border);padding:10px 14px;border-radius:12px;background:linear-gradient(180deg,#161a22,#10131a);box-shadow:var(--shadow)}
+    .btn:hover{border-color:#2a3142}
+
+    .hero{position:relative;overflow:hidden}
+    .hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center;padding:72px 0}
+    .kicker{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:.9rem}
+    .kicker .dot{width:8px;height:8px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--brand2));box-shadow:0 0 0 6px rgba(34,211,238,.08)}
+    h1{font-size:clamp(28px,4.5vw,44px);line-height:1.1;margin:10px 0 16px}
+    .lead{color:#d2d6de;font-size:1.05rem;line-height:1.7}
+    .cta{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+    .cta .primary{background:linear-gradient(135deg,var(--brand),var(--accent));color:#0b0c10;border:0}
+    .cta .ghost{background:transparent;border:1px solid #2a3142}
+    .hero .art{position:relative;min-height:280px;border:1px solid var(--border);border-radius:22px;background:
+      radial-gradient(70% 60% at 10% 0%, rgba(125,211,252,.2), transparent 60%),
+      radial-gradient(65% 50% at 80% 20%, rgba(167,139,250,.18), transparent 60%),
+      linear-gradient(180deg,#0e1218,#0a0d12);
+      box-shadow:var(--shadow)}
+    .chiprow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .chip{border:1px solid #263043;border-radius:999px;padding:6px 10px;color:#cbd5e1;font-size:.85rem}
+
+    section{padding:60px 0;border-top:1px solid var(--border)}
+    h2{font-size:clamp(22px,3.2vw,30px);margin:0 0 18px}
+    p{color:#cbd5e1}
+
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(12,1fr)}
+    .card{grid-column:span 12;border:1px solid var(--border);background:linear-gradient(180deg,#12151b,#0f1217);border-radius:18px;padding:18px}
+    .card h3{margin:.2rem 0 .3rem;font-size:1.05rem}
+    .muted{color:var(--muted)}
+
+    /* Services */
+    .svc{grid-column:span 6}
+
+    /* Catalog */
+    .catalog-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .catalog-list a{border:1px dashed #2a3142;border-radius:12px;padding:12px}
+
+    /* Footer */
+    footer{border-top:1px solid var(--border);padding:28px 0;color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width: 860px){
+      .hero .wrap{grid-template-columns:1fr;gap:18px;padding:46px 0}
+      .svc{grid-column:span 12}
+      .catalog-list{grid-template-columns:1fr}
+      .nav ul{gap:10px;font-size:.95rem;flex-wrap:wrap;justify-content:flex-end}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#top" class="brand" aria-label="NOTE LLC Home">
+        <span class="logo" aria-hidden="true"></span>
+        <span>NOTE LLC</span>
+      </a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#new">NEW</a></li>
+          <li><a href="#catalog">CATALOG</a></li>
+          <li><a href="#services">SERVICES</a></li>
+          <li><a href="#driveshare">DRIVESHARE</a></li>
+          <li><a href="#company">COMPANY</a></li>
+          <li><a href="#contact" class="btn">CONTACT</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container wrap">
+        <div>
+          <div class="kicker"><span class="dot"></span>Independent Label / Event Production</div>
+          <h1>イベントとレコードで、“いま”を届ける制作チーム</h1>
+          <p class="lead">ライブの現場設計から当日運営、海外アーティストの招聘、レコード制作まで。SAY HELLO TO NEVER RECORDINGS と連動し、シンプルで誠実なオペレーションを提供します。</p>
+          <div class="cta">
+            <a href="#services" class="btn primary">サービスを見る</a>
+            <a href="#catalog" class="btn ghost">カタログへ</a>
+          </div>
+          <div class="chiprow" aria-label="Highlights">
+            <span class="chip">Event Production</span>
+            <span class="chip">Artist Booking</span>
+            <span class="chip">Record Production</span>
+            <span class="chip">DriveShare</span>
+          </div>
+        </div>
+        <div class="art" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- NEW -->
+    <section id="new" aria-labelledby="new-title">
+      <div class="container">
+        <h2 id="new-title">NEW</h2>
+        <div class="grid">
+          <article class="card" style="grid-column:span 7">
+            <h3>HELLO-039｜Mirror / Barican Split 7"</h3>
+            <p class="muted">2026/02 発売予定。詳細は近日発表。</p>
+            <p class="muted">Bandcamp先行情報をチェック → <a href="#" aria-label="Bandcamp">Bandcamp</a></p>
+          </article>
+          <article class="card" style="grid-column:span 5">
+            <h3>TOUR｜Self‑Evident + Elephant</h3>
+            <p class="muted">2025 Japan Tour, 東京・名古屋・大阪。アフターインタビュー掲載予定。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATALOG -->
+    <section id="catalog" aria-labelledby="catalog-title">
+      <div class="container">
+        <h2 id="catalog-title">CATALOG</h2>
+        <p class="muted">テキスト一覧（詳細・音源試聴はBandcampへ）</p>
+        <div class="catalog-list" role="list">
+          <a role="listitem" href="#">HELLO‑039｜Mirror / Barican Split 7"</a>
+          <a role="listitem" href="#">HELLO‑038｜FACS – Present Tense</a>
+          <a role="listitem" href="#">HELLO‑037｜Congratulations – TBA</a>
+          <a role="listitem" href="#">HELLO‑036｜Compilation – TBA</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" aria-labelledby="services-title">
+      <div class="container">
+        <h2 id="services-title">SERVICES</h2>
+        <div class="grid">
+          <div class="card svc">
+            <h3>イベント制作</h3>
+            <p class="muted">企画立案／会場選定／舞監・進行／当日運営までワンストップ。クアトロ〜ライブハウス規模、屋外フェスの運営実績あり。</p>
+          </div>
+          <div class="card svc">
+            <h3>アーティスト招聘・ツアー企画</h3>
+            <p class="muted">興行ビザ（COE）準備〜プロモーション、地方会場との連携まで。現実的な収支設計で無理なく実現します。</p>
+          </div>
+          <div class="card svc">
+            <h3>原盤制作・流通</h3>
+            <p class="muted">7"/12" の小ロット〜中ロット、仕様最適化、海外プレス取り回し、国内外ストア流通の導線設計まで支援。</p>
+          </div>
+          <div class="card svc">
+            <h3>制作チーム支援</h3>
+            <p class="muted">英日バイリンガルの制作資料、契約書テンプレ、現場チェックリスト等の整備・運用を代行。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DRIVESHARE -->
+    <section id="driveshare" aria-labelledby="driveshare-title">
+      <div class="container">
+        <h2 id="driveshare-title">DRIVESHARE</h2>
+        <div class="card">
+          <p class="muted">ツアーバンド向けの車両シェア。ハイエース（グランドキャビン）を予定。必要に応じて車載ドラレコ／ETC／追加保険も手配。<br/>※ 法令遵守の範囲で提供します。詳細・空き状況はお問い合わせください。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPANY -->
+    <section id="company" aria-labelledby="company-title">
+      <div class="container">
+        <h2 id="company-title">COMPANY</h2>
+        <div class="grid">
+          <div class="card" style="grid-column:span 7">
+            <h3>ノート合同会社（NOTE LLC）</h3>
+            <p class="muted">設立：2026/02/14（予定）｜所在地：渋谷区本町｜資本金：1,000,000円</p>
+            <p class="muted">事業：イベント制作／アーティスト招聘／原盤制作・流通／DriveShare ほか</p>
+          </div>
+          <div class="card" style="grid-column:span 5">
+            <h3>関連リンク</h3>
+            <p class="muted"><a href="#" aria-label="BASE">BASE</a> ／ <a href="#" aria-label="Bandcamp">Bandcamp</a> ／ <a href="#" aria-label="DriveShare">DriveShare</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <h2 id="contact-title">CONTACT</h2>
+        <div class="card">
+          <p class="muted">案件のご相談・お見積り・メディア問い合わせは下記へ。</p>
+          <p><a class="btn" href="mailto:hello@example.com?subject=Inquiry%20from%20NOTE%20LLC%20LP">hello@example.com</a></p>
+          <p class="muted">または各種SNSのDMから。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <small>© <span id="year"></span> NOTE LLC</small>
+      <small class="muted">Built with plain HTML/CSS</small>
+    </div>
+  </footer>
+
+  <script>
+    // smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){
+          e.preventDefault();
+          document.querySelector(id)?.scrollIntoView({behavior:'smooth',block:'start'});
+          history.replaceState(null,'',id);
+        }
+      })
+    });
+    // year
+    document.getElementById('year').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>
