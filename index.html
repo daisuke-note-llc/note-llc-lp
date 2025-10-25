@@ -35,11 +35,29 @@
     .cta{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
     .cta .primary{background:linear-gradient(135deg,var(--brand),var(--accent));color:#0b0c10;border:0}
     .cta .ghost{background:transparent;border:1px solid #2a3142}
-    .hero .art{position:relative;min-height:280px;border:1px solid var(--border);border-radius:22px;background:
-      radial-gradient(70% 60% at 10% 0%, rgba(125,211,252,.2), transparent 60%),
-      radial-gradient(65% 50% at 80% 20%, rgba(167,139,250,.18), transparent 60%),
-      linear-gradient(180deg,#0e1218,#0a0d12);
-      box-shadow:var(--shadow)}
+.hero .art{
+  position:relative;
+  min-height:280px;                      
+  border:1px solid var(--border);
+  border-radius:22px;
+  background:
+    radial-gradient(70% 60% at 10% 0%, rgba(125,211,252,.2), transparent 60%),
+    radial-gradient(65% 50% at 80% 20%, rgba(167,139,250,.18), transparent 60%),
+    linear-gradient(180deg,#0e1218,#0a0d12);
+  box-shadow:var(--shadow);
+  display:flex;                           
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.hero .art img{
+  display:block;
+  width:auto;                              
+  height:auto;                            
+  max-width:100%;                          
+  max-height:420px;                       
+}
     .chiprow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
     .chip{border:1px solid #263043;border-radius:999px;padding:6px 10px;color:#cbd5e1;font-size:.85rem}
 
