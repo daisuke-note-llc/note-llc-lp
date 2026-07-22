@@ -1,0 +1,1100 @@
+:root {
+  --ink: #111111;
+  --paper: #f2f0ea;
+  --white: #ffffff;
+  /* 白文字とのコントラスト比 4.74:1 = WCAG AA 適合 */
+  --signal: #d8341f;
+  --line: rgba(17, 17, 17, 0.22);
+  --line-dark: rgba(255, 255, 255, 0.24);
+  --page-padding: clamp(1.25rem, 4vw, 4.5rem);
+  --section-gap: clamp(6rem, 12vw, 11rem);
+  --radius: 0;
+  --font-sans: "Helvetica Neue", Helvetica, Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic", YuGothic, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--signal);
+  outline-offset: 4px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 999;
+  padding: 0.75rem 1rem;
+  color: var(--white);
+  background: var(--ink);
+  transform: translateY(-150%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 100;
+  color: var(--white);
+  background: transparent;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+  border-bottom: 1px solid transparent;
+}
+
+.site-header.is-scrolled,
+.site-header.menu-visible {
+  color: var(--ink);
+  background: var(--paper);
+  border-bottom-color: var(--ink);
+}
+
+.header-inner {
+  min-height: 5rem;
+  padding: 0 var(--page-padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  color: var(--white);
+  background: var(--signal);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.brand-name {
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2.5rem);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.site-nav a {
+  position: relative;
+  padding: 0.45rem 0;
+}
+
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0.1rem;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 180ms ease;
+}
+
+.site-nav a:hover::after,
+.site-nav a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.site-nav .nav-contact {
+  padding: 0.65rem 1rem;
+  color: var(--white);
+  background: var(--signal);
+}
+
+.site-nav .nav-contact::after {
+  display: none;
+}
+
+.menu-button {
+  display: none;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  padding: clamp(9rem, 15vh, 11rem) var(--page-padding) clamp(3rem, 7vw, 6rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  align-items: end;
+  gap: clamp(2rem, 5vw, 6rem);
+  color: var(--white);
+  background: var(--ink);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(17, 17, 17, 0.95) 0%, rgba(17, 17, 17, 0.78) 42%, rgba(17, 17, 17, 0.12) 100%),
+    url("../assets/hero.jpg") center / cover no-repeat;
+  opacity: 0.24;
+  filter: grayscale(1) contrast(1.15);
+}
+
+.hero-copy,
+.hero-visual,
+.hero-index {
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  margin: 0 0 1.2rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+}
+
+.hero h1 {
+  margin: 0;
+  /* 「その瞬間をつくる。」が1行に収まる上限。超えると4行に割れる */
+  font-size: clamp(2.8rem, 4.7vw, 5.4rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.075em;
+}
+
+.hero h1 span {
+  display: block;
+}
+
+.hero-lead {
+  max-width: 42rem;
+  margin: clamp(2rem, 5vw, 4rem) 0 0;
+  font-size: clamp(0.96rem, 1.25vw, 1.12rem);
+  line-height: 1.95;
+}
+
+.hero-actions,
+.section-cta {
+  margin-top: 2.5rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.button {
+  min-height: 3.25rem;
+  padding: 0.85rem 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border: 1px solid currentColor;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  transition: color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button-primary {
+  color: var(--white);
+  background: var(--signal);
+  border-color: var(--signal);
+}
+
+.button-primary:hover {
+  color: var(--ink);
+  background: var(--white);
+  border-color: var(--white);
+}
+
+.button-outline:hover {
+  color: var(--white);
+  background: var(--ink);
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-bottom: 1px solid currentColor;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.hero-visual {
+  margin: 0;
+  align-self: end;
+}
+
+.hero-visual img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  filter: saturate(0.75) contrast(1.1);
+}
+
+.hero-visual figcaption {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.hero-index {
+  position: absolute;
+  right: var(--page-padding);
+  top: 8rem;
+  writing-mode: vertical-rl;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.section {
+  padding: var(--section-gap) var(--page-padding) 0;
+}
+
+.section-heading {
+  margin-bottom: clamp(3rem, 7vw, 6rem);
+  display: grid;
+  grid-template-columns: clamp(2.5rem, 6vw, 6rem) 1fr;
+  gap: clamp(1rem, 3vw, 3rem);
+  align-items: start;
+}
+
+.section-number {
+  margin: 0;
+  padding-top: 0.45rem;
+  border-top: 2px solid var(--ink);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.section-heading .eyebrow {
+  margin-bottom: 0.5rem;
+}
+
+.section-heading h2,
+.contact h2 {
+  margin: 0;
+  font-size: clamp(3.2rem, 9vw, 9.5rem);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.075em;
+  /* 長い英単語がカラム幅を超えても横スクロールさせない保険 */
+  overflow-wrap: break-word;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.feature-card {
+  min-height: clamp(26rem, 45vw, 39rem);
+  padding: clamp(1.5rem, 4vw, 4rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-card-dark {
+  color: var(--white);
+  background: var(--ink);
+}
+
+.feature-card-light {
+  border: 1px solid var(--ink);
+  background: var(--white);
+}
+
+.feature-meta {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.feature-card h3 {
+  max-width: 12ch;
+  margin: auto 0 1.6rem;
+  font-size: clamp(2.2rem, 5vw, 5.5rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
+.feature-card > p:not(.feature-meta) {
+  max-width: 30rem;
+  margin: 0;
+}
+
+.feature-footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-top: 1px solid currentColor;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+}
+
+.services-list {
+  border-top: 1px solid var(--ink);
+}
+
+.service-item {
+  min-height: 15rem;
+  padding: clamp(1.5rem, 3.5vw, 3.2rem) 0;
+  display: grid;
+  /* 見出し列は「アーティスト招聘・ツアー制作」が2行に収まる幅を確保 */
+  grid-template-columns: clamp(2rem, 5vw, 5rem) minmax(12rem, 1.05fr) minmax(16rem, 1.3fr) minmax(10rem, 0.75fr);
+  gap: clamp(1rem, 3vw, 3rem);
+  align-items: start;
+  border-bottom: 1px solid var(--ink);
+}
+
+.service-id,
+.service-item h3,
+.service-item p {
+  margin: 0;
+}
+
+.service-id,
+.service-en {
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.service-item h3 {
+  font-size: clamp(1.45rem, 2.7vw, 2.8rem);
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+}
+
+.service-item > p:nth-of-type(2) {
+  max-width: 48rem;
+}
+
+.service-en {
+  text-align: right;
+}
+
+.works-table {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 2px solid var(--ink);
+}
+
+.work-row {
+  min-height: 5.2rem;
+  padding: 1rem 0;
+  display: grid;
+  grid-template-columns: minmax(7.5rem, 0.55fr) minmax(12rem, 2fr) minmax(5rem, 0.45fr);
+  gap: 1rem;
+  align-items: baseline;
+  border-bottom: 1px solid var(--line);
+}
+
+.work-code,
+.work-format {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.work-format {
+  text-align: right;
+}
+
+.work-title {
+  font-size: clamp(1.15rem, 2.4vw, 2.3rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  overflow-wrap: break-word;
+}
+
+.works-note {
+  margin: 2rem 0 0;
+  font-size: 0.88rem;
+}
+
+/* WORKS — 公演名を出さずに領域と役割で見せる */
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  border-top: 2px solid var(--ink);
+}
+
+.field {
+  padding: 1.5rem clamp(1rem, 2vw, 1.75rem) 2.25rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  border-bottom: 1px solid var(--ink);
+}
+
+.field + .field {
+  padding-left: clamp(1rem, 2vw, 1.75rem);
+  border-left: 1px solid var(--line);
+}
+
+.field-en {
+  margin: 0;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  color: #55534f;
+}
+
+.field h3 {
+  margin: 0;
+  font-size: clamp(1.15rem, 1.9vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.035em;
+}
+
+.field-role {
+  margin: auto 0 0;
+  padding-top: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+/* シグナルカラーはオフホワイト上で 4.16:1 のため、文字色には使わず記号に留める */
+.field-role::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  flex-shrink: 0;
+  background: var(--signal);
+}
+
+.work-note {
+  margin: clamp(2.5rem, 5vw, 3.5rem) 0 0;
+  padding-top: 1.1rem;
+  max-width: 46rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.8rem;
+  line-height: 1.8;
+  color: #55534f;
+}
+
+.tag-sold {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.15em 0.5em;
+  color: var(--white);
+  background: var(--signal);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  vertical-align: 0.1em;
+}
+
+/* LABEL — レーベルとの関係を示す反転バンド */
+.label {
+  margin-top: var(--section-gap);
+  padding: clamp(4rem, 9vw, 9rem) var(--page-padding);
+  color: var(--white);
+  background: var(--ink);
+}
+
+.label-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: start;
+}
+
+.section-heading-invert {
+  margin-bottom: 0;
+}
+
+.section-heading-invert .section-number {
+  border-top-color: var(--signal);
+  color: var(--white);
+}
+
+.label h2 {
+  font-size: clamp(2.1rem, 5.2vw, 5rem);
+  line-height: 0.95;
+}
+
+.label-lead {
+  margin: 0 0 1.8rem;
+  font-size: clamp(1.35rem, 2.6vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.04em;
+}
+
+.label-body p:not(.label-lead) {
+  max-width: 36rem;
+  margin: 0 0 1.2rem;
+}
+
+.label-facts {
+  margin: 2.75rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 clamp(2rem, 6vw, 5rem);
+  border-top: 1px solid var(--line-dark);
+}
+
+.label-facts div {
+  padding-top: 1rem;
+  border-top: 3px solid var(--signal);
+  margin-top: -1px;
+}
+
+.label-facts dt {
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.label-links {
+  margin-top: 0.5rem;
+}
+
+.label-facts dd {
+  margin: 0.3rem 0 0;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.company-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(3rem, 9vw, 10rem);
+}
+
+.company-statement {
+  font-size: clamp(1.55rem, 3.3vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.38;
+  letter-spacing: -0.045em;
+}
+
+.company-statement p {
+  margin: 0 0 1.4em;
+}
+
+.company-data {
+  margin: 0;
+  border-top: 1px solid var(--ink);
+}
+
+.company-data div {
+  padding: 1.15rem 0;
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.company-data dt {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.company-data dd {
+  margin: 0;
+}
+
+.contact {
+  margin-top: var(--section-gap);
+  padding: clamp(4rem, 9vw, 9rem) var(--page-padding);
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(18rem, 0.75fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: end;
+  color: var(--white);
+  background: var(--signal);
+}
+
+.contact h2 {
+  font-size: clamp(3.4rem, 8.5vw, 9rem);
+}
+
+.contact-action p {
+  max-width: 32rem;
+  margin: 0 0 2.5rem;
+}
+
+.contact-mail {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid currentColor;
+  font-size: clamp(1.2rem, 2.5vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.site-footer {
+  padding: clamp(3rem, 6vw, 6rem) var(--page-padding) 2rem;
+  color: var(--white);
+  background: var(--ink);
+}
+
+.footer-brand {
+  font-size: clamp(3.5rem, 11vw, 11rem);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.08em;
+}
+
+.footer-links {
+  margin: clamp(3rem, 7vw, 7rem) 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+}
+
+.footer-links a,
+.footer-bottom a {
+  border-bottom: 1px solid transparent;
+}
+
+.footer-links a:hover,
+.footer-bottom a:hover {
+  border-bottom-color: currentColor;
+}
+
+.footer-bottom {
+  padding-top: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  border-top: 1px solid var(--line-dark);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+/* 404 */
+.notfound {
+  min-height: 100svh;
+  padding: var(--page-padding);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  color: var(--white);
+  background: var(--ink);
+}
+
+.notfound h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 8vw, 6rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
+.notfound-lead {
+  margin: 1.75rem 0 0;
+}
+
+@media (max-width: 960px) {
+  .menu-button {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.6rem 0;
+  }
+
+  .menu-button-label {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+
+  .menu-button-icon,
+  .menu-button-icon::before,
+  .menu-button-icon::after {
+    width: 1.4rem;
+    height: 1px;
+    display: block;
+    background: currentColor;
+    transition: transform 180ms ease, opacity 180ms ease;
+  }
+
+  .menu-button-icon {
+    position: relative;
+  }
+
+  .menu-button-icon::before,
+  .menu-button-icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+  }
+
+  .menu-button-icon::before { top: -0.4rem; }
+  .menu-button-icon::after { top: 0.4rem; }
+
+  .menu-button[aria-expanded="true"] .menu-button-icon {
+    background: transparent;
+  }
+
+  .menu-button[aria-expanded="true"] .menu-button-icon::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .menu-button[aria-expanded="true"] .menu-button-icon::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+
+  .site-nav {
+    position: fixed;
+    inset: 0;
+    padding: 8rem var(--page-padding) 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    color: var(--ink);
+    background: var(--paper);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-1rem);
+    transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+  }
+
+  .site-nav.is-open {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .site-nav a {
+    width: 100%;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--ink);
+    font-size: clamp(1.6rem, 6vw, 3rem);
+    letter-spacing: -0.04em;
+  }
+
+  .site-nav a::after {
+    display: none;
+  }
+
+  .site-nav .nav-contact {
+    margin-top: 1.5rem;
+    padding-inline: 1rem;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: 9rem;
+  }
+
+  .hero::before {
+    background:
+      linear-gradient(180deg, rgba(17, 17, 17, 0.86) 0%, rgba(17, 17, 17, 0.72) 55%, rgba(17, 17, 17, 0.92) 100%),
+      url("../assets/hero.jpg") center / cover no-repeat;
+    opacity: 0.6;
+  }
+
+  .hero-copy {
+    padding-bottom: 2rem;
+  }
+
+  .hero-visual {
+    display: none;
+  }
+
+  .hero-index {
+    top: 7.2rem;
+  }
+
+  .service-item {
+    grid-template-columns: 3rem minmax(0, 1fr);
+  }
+
+  .service-item > p:nth-of-type(2),
+  .service-en {
+    grid-column: 2;
+  }
+
+  .service-en {
+    text-align: left;
+  }
+
+  .label-inner,
+  .company-layout,
+  .contact {
+    grid-template-columns: 1fr;
+  }
+
+  .field-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .field:nth-child(odd) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .field:nth-child(even) {
+    padding-left: clamp(1rem, 2vw, 1.75rem);
+    border-left: 1px solid var(--line);
+  }
+
+  .label h2 {
+    font-size: clamp(2rem, 7vw, 3.4rem);
+  }
+
+  .contact-action {
+    padding-top: 1rem;
+    border-top: 1px solid currentColor;
+  }
+}
+
+@media (max-width: 680px) {
+  :root {
+    --page-padding: 1.1rem;
+  }
+
+  html {
+    scroll-padding-top: 4.25rem;
+  }
+
+  .header-inner {
+    min-height: 4.25rem;
+  }
+
+  .brand-name {
+    font-size: 0.85rem;
+  }
+
+  .hero {
+    padding-top: 7.6rem;
+    padding-bottom: 2rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.75rem, 14.5vw, 5.2rem);
+  }
+
+  .hero h1 span {
+    display: inline;
+  }
+
+  .hero-lead br {
+    display: none;
+  }
+
+  .hero-index {
+    display: none;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    min-height: 29rem;
+  }
+
+  .section-heading {
+    grid-template-columns: 2.3rem 1fr;
+  }
+
+  /* 18vw は SERVICES / RECORDINGS 等の分割不可な英単語が
+     カラム幅を超え、375px以下で横スクロールを起こしていた */
+  .section-heading h2,
+  .contact h2 {
+    font-size: clamp(2.6rem, 13vw, 6rem);
+  }
+
+  .label h2 {
+    font-size: clamp(1.9rem, 9.5vw, 2.8rem);
+  }
+
+  .service-item {
+    min-height: 0;
+    grid-template-columns: 2.2rem 1fr;
+  }
+
+  .service-item h3 {
+    font-size: 1.55rem;
+  }
+
+  .work-row {
+    min-height: 0;
+    grid-template-columns: 1fr auto;
+    gap: 0.35rem 1rem;
+  }
+
+  .work-code {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .work-format {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .work-title {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    font-size: 1.2rem;
+  }
+
+  .work-code,
+  .work-format {
+    font-size: 0.62rem;
+  }
+
+  .field-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .field,
+  .field:nth-child(even) {
+    padding: 1.25rem 0 1.5rem;
+    border-left: 0;
+  }
+
+  .label {
+    padding-block: 4rem;
+  }
+
+  .label-facts {
+    gap: 0 2rem;
+  }
+
+  .company-statement {
+    font-size: 1.75rem;
+  }
+
+  .company-data div {
+    grid-template-columns: 5.5rem 1fr;
+    gap: 1rem;
+  }
+
+  .contact-mail {
+    font-size: clamp(1.05rem, 5.8vw, 1.5rem);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
